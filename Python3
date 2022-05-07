@@ -1,0 +1,18 @@
+class Solution:
+    def findDiagonalOrder(self, mat: List[List[int]]) -> List[int]:
+        dict = {}
+        for i in range(len(mat)):
+            for j in range(len(mat[0])):
+                if i+j in dict:
+                    dict[i+j].append(mat[i][j])
+                else:
+                    dict[i+j] = [mat[i][j]]
+                
+        result = []
+        
+        for k in dict.items():
+            if k[0]%2 == 0:
+                result += reversed(k[1])
+            else: result += k[1]
+        
+        return result
